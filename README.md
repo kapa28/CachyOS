@@ -30,20 +30,16 @@ sudo nano ~/.config/plasma-workspace/env/autostart.sh
 
 sudo pacman -S sof-firmware
 
------------------------------------------------------- Keymap:
- KEYMAP=si
- 
-
-
 ----------------------------------------------------- Wayland:
 sudo nano /etc/environment
 QT_STYLE_OVERRIDE= theme name(breeze)
 QT_QPA_PLATFORMTHEME=gtk4/qt5
+
 sudo pacman -S plasma-wayland-session (+kde-applications)
 sudo nano /etc/default/grub
 GRUB_CMDLINE_LINUX_DEFAULT+="nvidia nvidia-drm.modeset=1 nvidia-drm.fbdev=1 nvidia-uvm nvidia-drm"
-grub-mkconfig -o /boot/grub/grub.cfg
-mkinitcpio -P
+sudo grub-mkconfig -o /boot/grub/grub.cfg
+sudo mkinitcpio -P
 
 /etc/pacman.d/hooks/nvidia.hook
 [Trigger]
@@ -77,3 +73,5 @@ sudo nano /boot/grub/grub.cfg
 //remove linux kernel loading echos
 
 ------------------------------------------------------ Theming:
+/etc/modprobe.d/nvidia-power-management.conf
+options nvidia NVreg_PreserveVideoMemoryAllocations=1 NVreg_TemporaryFilePath=/var/tmp
