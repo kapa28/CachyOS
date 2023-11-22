@@ -1,0 +1,2 @@
+# artix
+Personal setup
