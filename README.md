@@ -72,3 +72,8 @@ GRUB_HIDDEN_TIMEOUT=1
 GRUB_RECORDFAIL_TIMEOUT=$GRUB_HIDDEN_TIMEOUT
 GRUB_CMDLINE_LINUX_DEFAULT+="i915.enable_psr=1 i915.enable_fbc=1 quiet loglevel=0 nowatchdog mitigations=off ipv6.disable=1"
 grub-mkconfig -o /boot/grub/grub.cfg
+
+sudo nano /boot/grub/grub.cfg
+//remove linux kernel loading echos
+
+------------------------------------------------------ Theming:
