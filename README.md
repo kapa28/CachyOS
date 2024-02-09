@@ -18,20 +18,26 @@
 
 ## Setting up for Wayland (it's cooler and shiny)...
 By default it will force X11 so we will have to make some adjustements to get Wayland working on Nvidia.
-First we seet some kernel parameters. Edit /boot/loader/entries/(*****).conf (in my case linux-cachyos.conf) and add `nvidia_drm.modeset=1 nvidia_drm.fbdev=1 nvidia.NVreg_PreserveVideoMemoryAllocations=1` + other kernel parameters you might want at the end of the last options line.
-Then we need to install some invidia drivers. We can do this by running `sudo pacman -Sy nvidia`. To make them work properly we also need to enable them by running: `sudo systemctl enable nvidia-resume.service;sudo systemctl enable nvidia-hibernate.service;sudo systemctl enable nvidia-suspend;sudo systemctl enable nvidia`.
-Lastly we need to tell GDM to give us the option to use Wayland in the login screen. We do this by running
-`sudo nano /etc/gdm/custom.conf`and changin `#WaylandEnable=False` to `WaylandEnable=True`.
+1. we need to seet some kernel parameters, edit /boot/loader/entries/(*****).conf (in my case linux-cachyos.conf) with a terminal text editor fo your choice (I'll use nano for simplicity)
+2. add `nvidia_drm.modeset=1 nvidia_drm.fbdev=1 nvidia.NVreg_PreserveVideoMemoryAllocations=1` + other kernel parameters (like splash quiet nowatchdog...) you might want or need at the end of the last options line
+3. install some invidia drivers, I'll do it by running `sudo pacman -Sy nvidia`
+4. to make them work properly we also need to enable them by running: `sudo systemctl enable nvidia-resume.service;sudo systemctl enable nvidia-hibernate.service;sudo systemctl enable nvidia-suspend;sudo systemctl enable nvidia`
+5. lastly we need to tell GDM that we are ready for Wayland by running: `sudo nano /etc/gdm/custom.conf`and changing `#WaylandEnable=False` to `WaylandEnable=True`
+6.*it might also be necessary to run sudo `ln -s /dev/null /etc/udev/rules.d/61-gdm.rules`.
+7. reboot
+8. choose your profile on the GDM screen, you should see a gear icon in the bottom right corner of the password input screen, when clicked it should present an option to use Wayland instead of Xorg!
+9. check if it worked by running echo $XDG_CURRENT_DESKTOP (returns x11 or wayland)
 
-It might also be necessary to run sudo `ln -s /dev/null /etc/udev/rules.d/61-gdm.rules`.
+## Initialize Secure Boot
+1. if you were to go into ***Settings>Privacy>Device Security*** will most likely see failed security checks, to fix this we will use a convinient signing tool
+2. install it by running `sudo pacman -S sbctl`
+3. run `sudo sbctl create-keys;sudo sudo sbctl enroll-keys;sudo sbctl status` to create new keys for your OS, you should get 2 check marks out of 3 on status command output, if you only get one then you most likely didn't clear the keys in UEFI/BIOS
+4. you now need to sign some files with these keys, to see which files you need to sign run `sudo sbctl list-files`
+5. sign all of them by running sudo `sbctl sign -s path/to/file.extension`, eg.: `sudo sbctl sign -s /boot/vmlinuz-linux-cachyos` 
+6. reboot, now your OS should pass secure boot, get 3 ticks on stats check and pass tests in Privacy>Device Security
+7. now we need do set up automatic signing after every big `sudo pacman -Syyu` (otherwise you fill get locked out on kernel updates), run `sudo nano /etc/pacman.d/hooks/95-systemd-boot.hook` to add:
 
-Reboot. Now when you choose your profile on the GDM screen you should see a gear icon in the bottom right that when clicked should present an option to use Wayland instead of Xorg! Check if it worked by running echo $XDG_CURRENT_DESKTOP.
-
-
-Now we will focus on making Secure Boot work properly. If you were to go into Settings>Privacy>Device Security you would see it fails the checks. To fix this we will use a convinient signing tool. Install it by running `sudo pacman -S sbctl`. Run `sudo sudo sbctl enroll-keys;sudo sbctl create-keys; sudo sbctl status`. You should get 2 check marks out of 3. If you only get one then you most likely didn't clear the keys in UEFI/BIOS. You now need to sign some files with these keys. To see which files you need to sign run `sudo sbctl list-files`. Sign all of them by running sudo sbctl sign -s path/to/file.extension`. Eg.: sudo sbctl sign -s /boot/vmlinuz-linux-cachyos`. 
-
-If you reboot now your OS should pass secure boot, get 3 ticks on stats check and pass tests in Privacy>Device Security. Now you need edit sudo nano /etc/pacman.d/hooks/80-secureboot.hook` and `sudo nano /etc/pacman.d/hooks/95-systemd-boot.hook` in order to sign the kernel after every sudo pacman -Syyu (otherwise you fill get locked out on kernel updates). In 80-secureboot.hook add the following (Exec for every file you get by running sudo sbctllist-files):
-
+```
 [Trigger]
 Operation = Install
 Operation = Upgrade
@@ -45,9 +51,11 @@ Exec = /bin/sh -c 'sbctl sign -s /path/to/file1.extension;sbctl sign -s /path/to
 Depends = sh
 Depends = sbctl
 NeedsTargets
+```
 
-And for the 95-systemd-boot.hook:
-  GNU nano /etc/pacman.d/hooks/95-systemd-boot.hook                                      
+8. and `sudo nano /etc/pacman.d/hooks/95-systemd-boot.hook` to add:
+
+```
 [Trigger]
 Type = Package
 Operation = Upgrade
@@ -57,7 +65,8 @@ Target = systemd
 Description = Gracefully upgrading systemd-boot...
 When = PostTransaction
 Exec = /usr/bin/systemctl restart systemd-boot-update.service
-
+```
+## Packages
 Now that we got the essentials out of the way we can get our favourtire packages:
 (firmware) sudo pacman -Sy linux-firmware ast-firmware aic94xx-firmware  linux-firmware-qlogic  linux-firmware-qlogic  wd719x-firmware  upd72020x-fw
 (tools) sudo pacman -Sy librewolf discord-screenaudio signal-desktop code qtcreator github git flatpak qbittorrent flatpak qbittorrent  podman gnome-exrensions yay
