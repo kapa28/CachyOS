@@ -1,4 +1,4 @@
-# Lil guide to my personal setup [Artix let me down :( ]
+# Lil guide to my personal setup
 
 ## Install to hardware
 1. download the [latest official KDE installer](https://cachyos.org/download/)
