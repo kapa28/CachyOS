@@ -29,7 +29,7 @@ By default it will force X11 so we will have to make some adjustements to get Wa
 9. check if it worked by running echo $XDG_CURRENT_DESKTOP (returns x11 or wayland)
 
 ## Initialize Secure Boot
-1. if you were to go into ***Settings>Privacy>Device Security*** will most likely see failed security checks, to fix this we will use a convinient signing tool
+1. if you were to go into ***Settings > Privacy > Device Security*** will most likely see failed security checks, to fix this we will use a convinient signing tool
 2. install it by running `sudo pacman -S sbctl`
 3. run `sudo sbctl create-keys;sudo sudo sbctl enroll-keys;sudo sbctl status` to create new keys for your OS, you should get 2 check marks out of 3 on status command output, if you only get one then you most likely didn't clear the keys in UEFI/BIOS
 4. you now need to sign some files with these keys, to see which files you need to sign run `sudo sbctl list-files`
@@ -77,25 +77,35 @@ Now that we got the essentials out of the way we can get our favourtire packages
 + creative: `sudo pacman -Sy obs-studio davinci-resolve blender inkscape krita opentoonz`
 + office: `sudo pacman -Sy onlyoffice-bin wps-office thunderbird`
 + games: `sudo pacman -Sy mari0 supertuxkart xonotic`
++ rust: `rust:curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh`, `sudo nano /home/kapa/.profile`, `set PATH "/home/kapa/.cargo/bin:$PATH"`, `source ~/.profile`
 
 ### Mini debloat
-- `sudo pacman -R neofetch cachy-browser` 
+- `sudo pacman -R neofetch cachy-browser`
+
+## Add if missing
++ `sudo pacman -Sy malcontent gnome-shell`
 
 ## Customization
 I like to change some stuff:
++ general settings:
+  + ***Tweaks > Mouse & Touchpad > Touchpad > Didable while typing > Off, Tweaks > Mouse & Touchpad > Touchpad > Mouse click emulation > Area***
+  + ***Settings > Mouse & Touchpad > Touchpad > Clicking >Tap to click > On, Settings > Mouse & Touchpad > Touchpad > Scrolling > Natural***
+  + ***Tweaks > Apperance > Background > Background image > Set cool vaporwave image***
 + gnome extensions(in extension manager):
   + Dash to Dock (show dock on screen),
   + Gradient Top Bar (fade out top bar),
   + User Theme (support for gnome themes),
   + AppIndicator(app tray),
   + Blur my Shell (blur effects),
-  + Tactile (Window Manager*)
+  + Tactile (Window Manager*, add gapps)
 + set custom theme:
-  + `yay -S gnome-terminal-transparency`
+  + get [Fluent Dark](https://github.com/vinceliuice/Fluent-gtk-theme) or other GTK theme
   + `sudo tar -xf Nordic-darker.tar.xz -C /usr/share/themes`
   + cange it in ***Tweaks > Appearance > Legacy Applications > Fluent Dark***
+  + change QT theme in Kvantum Manager to match GTK theme
 + theme GDM:
   + `sudo pacman -Sy gdm-settings`
+  + set a blurred version of normal background image
 + librewolf:
   + import browser data (about:config, browser.migrate.interactions.csvpasswords),
   + add Canvas Blocker,
@@ -106,24 +116,17 @@ I like to change some stuff:
   + ENable WebGL,
   + enable restore previous session,
   + add MATRIX_PURPLE theme
-+ 
++ BTRFS assistant
+  + enable and schedule 1x day, 2x week, 4x month, 1x year
++ code:
+  + Even Better TOML
+  + GlassIt-VSC
+  + rust-analyzer
+  + Thunder Client
+  + Powe Mode
+  + Syntax theme
++ fish:
+  + `yay -S gnome-terminal-transparency`
+  + `sudo nano /usr/share/cachyos-fish-config/cachyos-config.fish`, add `--logo-type small --logo-padding-top 10` to `fastfetch`in greet
 
-Lastly I set my preffered general settings, import other settings, set up BTRFS snapshots in Btrfs Assistant, configure my apps...
-
-(if missing) sudo pacman -Sy malcontent gnome-shell
-
-VS code:
-Even Better TOML
-GlassIt-VSC
-rust-analyzer
-Thunder Client
-
-Rust:
-curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
-sudo nano /home/kapa/.profile
-set PATH "/home/kapa/.cargo/bin:$PATH"
-❯ source ~/.profile
-
-Fish:
-sudo nano /usr/share/cachyos-fish-config/cachyos-config.fish
-fastfetch --logo-type small --logo-padding-top 10
+ Finish by transfering saved data onto your computer.
