@@ -2,7 +2,7 @@
 
 ## Install to hardware
 1. download the [latest official KDE installer](https://cachyos.org/download/)
-2. copy ISO to [Ventoy](https://www.ventoy.net/en/download.html) formated USB stick
+2. copy ISO to [Ventoy](https://www.ventoy.net/en/download.html) formated namebrand USB stick
 3. insert USB into your computer
 4. press the power button to boot PC
 5. press BIOS key (usually F2,F9,F11...) to load into UEFI/BIOS
