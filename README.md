@@ -75,7 +75,7 @@ Now that we got the essentials out of the way we can get our favourtire packages
 + remote desktop: `sudo pacman -Sy remmina freerdp libvncserver`
 + social: `sudo pacman -Sy discord-screenaudio signal-desktop`
 + creative: `sudo pacman -Sy obs-studio davinci-resolve blender inkscape krita opentoonz`
-+ office: `sudo pacman -Sy onlyoffice-bin wps-office thunderbird`
++ office: `sudo pacman -Sy wps-office thunderbird`
 + games: `sudo pacman -Sy mari0 supertuxkart xonotic`
 + rust: `rust:curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh`, `sudo nano /home/kapa/.profile`, `set PATH "/home/kapa/.cargo/bin:$PATH"`, `source ~/.profile`
 
