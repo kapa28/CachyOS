@@ -1,4 +1,4 @@
-# Lil guide to my personal setup (Artix linux let me down :[ )
+# Lil guide to my personal setup [Artix let me down :( ]
 
 ## Install to hardware
 1. download the [latest official KDE installer](https://cachyos.org/download/)
@@ -81,21 +81,32 @@ Now that we got the essentials out of the way we can get our favourtire packages
 ### Mini debloat
 - `sudo pacman -R neofetch cachy-browser` 
 
-Gnome extensions:
-Dash to Dock (left, smaller), Gradient Top Bar, User Theme, AppIndicator(app tray), Blur my Shell
-
-Set costum theme:
-yay -S gnome-terminal-transparency
-sudo tar -xf Nordic-darker.tar.xz -C /usr/share/themes
-Change it in gnome Tweaks > Appearance > Legacy Applications > Fluent Dark.
-
-Install GDM themes:
-sudo pacman -Sy gdm-settings
-add background...
-
-
-LibreWolf:
-Import Browser Data, add Canvas Blocker, add DecentralEyes, add Cookie Notices to uBlock Annoyances block list, add costum DNS, Limit cross-origin referrers, ENable WebGL, restore previous session...
+## Customization
+I like to change some stuff:
++ gnome extensions(in extension manager):
+  + Dash to Dock (show dock on screen),
+  + Gradient Top Bar (fade out top bar),
+  + User Theme (support for gnome themes),
+  + AppIndicator(app tray),
+  + Blur my Shell (blur effects),
+  + Tactile (Window Manager*)
++ set custom theme:
+  + `yay -S gnome-terminal-transparency`
+  + `sudo tar -xf Nordic-darker.tar.xz -C /usr/share/themes`
+  + cange it in ***Tweaks > Appearance > Legacy Applications > Fluent Dark***
++ theme GDM:
+  + `sudo pacman -Sy gdm-settings`
++ librewolf:
+  + import browser data (about:config, browser.migrate.interactions.csvpasswords),
+  + add Canvas Blocker,
+  + add DecentralEyes,
+  + add Cookie Notices to uBlock Annoyances block list,
+  + add costum DNS,
+  + Limit cross-origin referrers,
+  + ENable WebGL,
+  + enable restore previous session,
+  + add MATRIX_PURPLE theme
++ 
 
 Lastly I set my preffered general settings, import other settings, set up BTRFS snapshots in Btrfs Assistant, configure my apps...
 
