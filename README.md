@@ -68,19 +68,18 @@ Exec = /usr/bin/systemctl restart systemd-boot-update.service
 ```
 ## Packages
 Now that we got the essentials out of the way we can get our favourtire packages:
-(firmware) sudo pacman -Sy linux-firmware ast-firmware aic94xx-firmware  linux-firmware-qlogic  linux-firmware-qlogic  wd719x-firmware  upd72020x-fw
-(tools) sudo pacman -Sy librewolf discord-screenaudio signal-desktop code qtcreator github git flatpak qbittorrent flatpak qbittorrent  podman gnome-exrensions yay
-(remote desktop) sudo pacman -Sy remmina freerdp libvncserver
-(games) sudo pacman -Sy mari0 supertuxkart xonotic
-(office) sudo pacman -Sy onlyoffice-bin wps-office thunderbird
-(design/art/video) sudo pacman -Sy obs-studio davinci-resolve blender inkscape krita opentoonz
++ firmware: `sudo pacman -Sy`+ `linux-firmware`
+  +  extra `ast-firmware aic94xx-firmware linux-firmware-qlogic linux-firmware-qlogic wd719x-firmware upd72020x-fw`
++ tools: `sudo pacman -Sy librewolf code git flatpak qbittorrent podman gnome-extensions yay`
+  + flatpaks: `flatpak install com.mattjakeman.ExtensionManager io.podman_desktop.PodmanDesktop`   
++ remote desktop: `sudo pacman -Sy remmina freerdp libvncserver`
++ social: `sudo pacman -Sy discord-screenaudio signal-desktop`
++ creative: `sudo pacman -Sy obs-studio davinci-resolve blender inkscape krita opentoonz`
++ office: `sudo pacman -Sy onlyoffice-bin wps-office thunderbird`
++ games: `sudo pacman -Sy mari0 supertuxkart xonotic`
 
-Flatpaks:
-flatpak install com.mattjakeman.ExtensionManager
-flatpak install flathub io.podman_desktop.PodmanDesktop
-
-Mini debloat:
-sudo pacman -R neofetch cachy-browser 
+### Mini debloat
+- `sudo pacman -R neofetch cachy-browser` 
 
 Gnome extensions:
 Dash to Dock (left, smaller), Gradient Top Bar, User Theme, AppIndicator(app tray), Blur my Shell
