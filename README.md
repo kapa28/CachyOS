@@ -131,4 +131,4 @@ I like to change some stuff:
   + `yay -S gnome-terminal-transparency`
   + `sudo nano /usr/share/cachyos-fish-config/cachyos-config.fish`, add `--logo-type small --logo-padding-top 10` to `fastfetch`in greet
 
- Finish by transfering saved data onto your computer.
+ Finish by updating with `sudo pacman -Syyu` and transfering saved data onto your computer.
