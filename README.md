@@ -70,7 +70,7 @@ Exec = /usr/bin/systemctl restart systemd-boot-update.service
 Now that we got the essentials out of the way we can get our favourtire packages:
 + firmware: `sudo pacman -Sy`+ `linux-firmware`
   +  extra `ast-firmware aic94xx-firmware linux-firmware-qlogic linux-firmware-qlogic wd719x-firmware upd72020x-fw`
-+ tools: `sudo pacman -Sy librewolf code git flatpak qbittorrent podman gnome-extensions yay`
++ tools: `sudo pacman -Sy librewolf code git flatpak qbittorrent podman gnome-extensions yay powertop`
   + flatpaks: `flatpak install com.mattjakeman.ExtensionManager io.podman_desktop.PodmanDesktop`   
 + remote desktop: `sudo pacman -Sy remmina freerdp libvncserver`
 + social: `sudo pacman -Sy discord-screenaudio signal-desktop`
@@ -116,6 +116,8 @@ I like to change some stuff:
   + ENable WebGL,
   + enable restore previous session,
   + add MATRIX_PURPLE theme
++ powertop:
+  + enable tweaks for better battery life  
 + BTRFS assistant
   + enable and schedule 1x day, 2x week, 4x month, 1x year
 + code:
