@@ -6,7 +6,7 @@
 3. insert USB into your computer
 4. press the power button to boot PC
 5. press BIOS key (usually F2,F9,F11...) to load into UEFI/BIOS
-6. set simple UEFI password (****) and enable secure boot under boot settings if it's not alredy on
+6. set an UEFI password (*+*+*+*+) and enable secure boot under boot settings if it's not alredy on
 7. under Security clear all previously stored keys (you usually have an option to restore them if you ever need to do so)
 8. under boot order set Ventoy USB stick as #1, save settings and BOOT
 9. in Ventoy menu select CaachyOS, normal BOOT and choose normal, legacy or proprietary NVIDIA as fits
