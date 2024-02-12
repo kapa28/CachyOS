@@ -99,6 +99,7 @@ I like to change some stuff:
   + AppIndicator(app tray),
   + Blur my Shell (blur effects),
   + Tactile (Window Manager*, add gapps)
+  + Battery Health Charging (https://github.com/frederik-h/acer-wmi-battery + polkit install = limit to 80%)
 + set custom theme:
   + get [Fluent Dark](https://github.com/vinceliuice/Fluent-gtk-theme) or other GTK theme
   + `sudo tar -xf Nordic-darker.tar.xz -C /usr/share/themes`
