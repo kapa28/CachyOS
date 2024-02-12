@@ -84,6 +84,7 @@ Now that we got the essentials out of the way we can get our favourtire packages
 
 ## Add if missing
 + `sudo pacman -Sy malcontent gnome-shell`
++ `sudo nano /etc/vconsole.conf, `FONT=lat2a-16`
 
 ## Customization
 I like to change some stuff:
